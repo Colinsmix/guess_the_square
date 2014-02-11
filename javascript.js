@@ -20,6 +20,7 @@ window.onload=function(){
   }
 }
 
+
 // Game Functions
 function canvasClicked(canvasNumber){
         theCanvas = "canvas"+canvasNumber;
@@ -38,8 +39,10 @@ function canvasClicked(canvasNumber){
           turn++;
           painted[canvasNumber-1] = true;
           cxt.rect(0,0,200,200);
-          cxt.fillStyle="red";
+          cxt.fillStyle=checkDistance(canvasNumber);
           cxt.fill();
+          $(".guessesleft").html("Guesses Remaining : " + (20-turn));
+
           if(turn == 20){
             alert("YOU LOSE!");
             playAgain();
@@ -53,10 +56,46 @@ function canvasClicked(canvasNumber){
 function playAgain(){
         y=confirm("PLAY AGAIN?");
         if(y==true){
-          alert("OKAY!");
           location.reload(true);
         }
         else{
           alert("FINE THEN!");
         }
 }
+
+function checkDistance(canvasNumber){
+  var divguess = Math.floor(canvasNumber/6);
+  var remguess = canvasNumber % 6;
+  var divwinner = Math.floor(winningSquare/6);
+  var remwinner = winningSquare % 6;
+  var absdiv = Math.abs(divguess - divwinner);
+  var absrem = Math.abs(remguess - remwinner);
+  var color = Math.max(absdiv, absrem);
+  switch(color){
+    case 1:
+      return "#00FF00"
+    break;
+
+    case 2:
+      return "#7FFF00"
+    break;
+
+    case 3:
+      return "#FFFF00"
+
+    break;
+
+    case 4:
+      return "#ff7f00"
+    break;
+
+    case 5:
+      return "#FF0000"
+    break;
+
+    default:
+      return "black"
+  }
+}
+
+

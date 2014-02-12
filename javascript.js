@@ -35,7 +35,6 @@ function canvasClicked(canvasNumber){
           playAgain();
         }
         else{
-
           if(painted[canvasNumber-1] ==false){
             turn++;
             painted[canvasNumber-1] = true;
@@ -51,17 +50,6 @@ function canvasClicked(canvasNumber){
           }
           else{
             alert("Already Guessed Here!!!  Pick a Different Spot!");
-        if(painted[canvasNumber-1] ==false){
-          turn++;
-          painted[canvasNumber-1] = true;
-          cxt.rect(0,0,200,200);
-          cxt.fillStyle=checkDistance(canvasNumber);
-          cxt.fill();
-          $(".guessesleft").html("Guesses Remaining : " + (5-turn));
-
-          if(turn == 5){
-            alert("YOU LOSE!");
-            playAgain();
           }
         }
 }

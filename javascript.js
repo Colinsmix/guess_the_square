@@ -64,7 +64,7 @@ function playAgain(){
 }
 
 function checkDistance(canvasNumber){
-  var divguess = Math.floor(canvasNumber/6);
+  var divguess = Math.floor((canvasNumber-1)/6);
   if(canvasNumber % 6 == 0){
     var remguess = 6;
   }

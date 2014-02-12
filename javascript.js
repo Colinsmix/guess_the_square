@@ -41,9 +41,9 @@ function canvasClicked(canvasNumber){
           cxt.rect(0,0,200,200);
           cxt.fillStyle=checkDistance(canvasNumber);
           cxt.fill();
-          $(".guessesleft").html("Guesses Remaining : " + (20-turn));
+          $(".guessesleft").html("Guesses Remaining : " + (5-turn));
 
-          if(turn == 20){
+          if(turn == 5){
             alert("YOU LOSE!");
             playAgain();
           }
@@ -65,9 +65,19 @@ function playAgain(){
 
 function checkDistance(canvasNumber){
   var divguess = Math.floor(canvasNumber/6);
-  var remguess = canvasNumber % 6;
+  if(canvasNumber % 6 == 0){
+    var remguess = 6;
+  }
+  else{
+    var remguess = canvasNumber % 6;
+  }
   var divwinner = Math.floor(winningSquare/6);
-  var remwinner = winningSquare % 6;
+  if(winningSquare % 6 == 0){
+    var remwinner = 6;
+  }
+  else{
+    var remwinner = winningSquare % 6;
+  }
   var absdiv = Math.abs(divguess - divwinner);
   var absrem = Math.abs(remguess - remwinner);
   var color = Math.max(absdiv, absrem);
